@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../components/Layout';
 import { addToCart } from '../../store/cart-slice';
 import data from '../../utils/data';
@@ -15,8 +15,8 @@ export default function ProductScreen() {
   const dispatch = useDispatch();
 
   function addToCartHandler() {
-    const cartItem = { slug: product.slug, count: 1 };
-    dispatch(addToCart, cartItem);
+    const cartItem = { product, quantity: 1 };
+    dispatch(addToCart(cartItem));
   }
 
   if (!product) {
