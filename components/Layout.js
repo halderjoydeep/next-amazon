@@ -1,8 +1,11 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Layout({ title, children }) {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <>
       <Head>
@@ -18,7 +21,12 @@ export default function Layout({ title, children }) {
             </Link>
             <div>
               <Link href="/cart" className="p-2">
-                Cart
+                Cart{' '}
+                {totalQuantity !== 0 && (
+                  <span className="ml-2 rounded-full px-2 py-1 bg-red-600 text-white">
+                    {totalQuantity}
+                  </span>
+                )}
               </Link>
               <Link href="/login" className="p-2">
                 Login
