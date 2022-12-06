@@ -2,13 +2,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Layout from '../../components/Layout';
+import { addToCart } from '../../store/cart-slice';
 import data from '../../utils/data';
 
 export default function ProductScreen() {
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((p) => p.slug === slug);
+
+  const dispatch = useDispatch();
+
+  function addToCartHandler() {
+    const cartItem = { slug: product.slug, count: 1 };
+    dispatch(addToCart, cartItem);
+  }
 
   if (!product) {
     return <Layout>No Product Found</Layout>;
@@ -54,7 +63,12 @@ export default function ProductScreen() {
                   : 'Currently unavailable'}
               </p>
             </div>
-            <button className="button-primary w-full">Add to cart</button>
+            <button
+              className="button-primary w-full"
+              onClick={addToCartHandler}
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
