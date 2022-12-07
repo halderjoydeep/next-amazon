@@ -103,7 +103,9 @@ export default function CartScreen() {
             <div className="pb-3 text-xl">
               Subtotal ({totalQuantity}): ${totalPrice}
             </div>
-            <button className="button-primary w-full">Checkout</button>
+            <button className="button-primary w-full">
+              <Link href="/checkout">Checkout</Link>
+            </button>
           </div>
         </div>
       )}

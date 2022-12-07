@@ -18,7 +18,10 @@ const cartSlice = createSlice({
           existingCartItem.product.countInStock === existingCartItem.quantity
         ) {
           alert('Oop!! Out of Stock!');
-        } else if (action.payload.quantity === 1) {
+        } else if (
+          action.payload.quantity === 1 &&
+          existingCartItem.quantity == 1
+        ) {
           alert('Item already added to cart');
         } else {
           existingCartItem.quantity = action.payload.quantity;
