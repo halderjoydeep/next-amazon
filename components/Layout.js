@@ -23,7 +23,7 @@ export default function Layout({ title, children }) {
               <Link href="/cart" className="p-2">
                 Cart{' '}
                 {totalQuantity !== 0 && (
-                  <span className="ml-2 rounded-full px-2 py-1 bg-red-600 text-white">
+                  <span className="ml-1 rounded-full px-2 py-1 bg-red-600 text-white">
                     {totalQuantity}
                   </span>
                 )}
