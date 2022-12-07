@@ -8,8 +8,8 @@ import { addToCart } from '../../store/cart-slice';
 import data from '../../utils/data';
 
 export default function ProductScreen() {
-  const { query } = useRouter();
-  const { slug } = query;
+  const router = useRouter();
+  const { slug } = router.query;
   const product = data.products.find((p) => p.slug === slug);
 
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ export default function ProductScreen() {
   function addToCartHandler() {
     const cartItem = { product, quantity: 1 };
     dispatch(addToCart(cartItem));
+    router.push('/cart');
   }
 
   if (!product) {
