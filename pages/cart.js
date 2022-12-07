@@ -1,12 +1,20 @@
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import { IoMdTrash } from 'react-icons/io';
+import { removeFromCart } from '../store/cart-slice';
 
 export default function CartScreen() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const dispatch = useDispatch();
+
+  function removeFromCartHandler(slug) {
+    dispatch(removeFromCart(slug));
+  }
+
   return (
     <Layout title="Shopping Cart">
       {cartItems.length === 0 ? (
@@ -48,7 +56,12 @@ export default function CartScreen() {
                       {item.quantity * item.product.price}
                     </td>
                     <td className="text-center">
-                      <button>
+                      <button
+                        onClick={removeFromCartHandler.bind(
+                          null,
+                          item.product.slug
+                        )}
+                      >
                         <IoMdTrash className="text-xl" />
                       </button>
                     </td>
