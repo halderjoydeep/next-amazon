@@ -102,7 +102,7 @@ function CartScreen() {
             <div className="pb-3 text-xl">
               Subtotal ({totalQuantity}): ${totalPrice}
             </div>
-            <Link href="/checkout">
+            <Link href="login?redirect=/checkout">
               <button className="button-primary w-full">Checkout</button>
             </Link>
           </div>
