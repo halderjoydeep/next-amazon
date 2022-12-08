@@ -1,11 +1,20 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function Layout({ title, children }) {
+  const [totalQuantity, setTotalQuantity] = useState(0);
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    const totalQuantity = cartItems.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    setTotalQuantity(totalQuantity);
+  }, [cartItems]);
+
   return (
     <>
       <Head>

@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/Layout';
 import { IoMdTrash } from 'react-icons/io';
 import { addToCart, removeFromCart } from '../store/cart-slice';
+import dynamic from 'next/dynamic';
 
-export default function CartScreen() {
+function CartScreen() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cartItems.reduce(
@@ -110,3 +111,5 @@ export default function CartScreen() {
     </Layout>
   );
 }
+
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
