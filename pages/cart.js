@@ -80,9 +80,7 @@ export default function CartScreen() {
                         )}
                       </select>
                     </td>
-                    <td className="p-5 text-right">
-                      {item.quantity * item.product.price}
-                    </td>
+                    <td className="p-5 text-right">{item.product.price}</td>
                     <td className="text-center">
                       <button
                         onClick={removeFromCartHandler.bind(
@@ -103,9 +101,9 @@ export default function CartScreen() {
             <div className="pb-3 text-xl">
               Subtotal ({totalQuantity}): ${totalPrice}
             </div>
-            <button className="button-primary w-full">
-              <Link href="/checkout">Checkout</Link>
-            </button>
+            <Link href="/checkout">
+              <button className="button-primary w-full">Checkout</button>
+            </Link>
           </div>
         </div>
       )}
