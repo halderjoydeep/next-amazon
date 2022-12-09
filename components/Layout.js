@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Layout({ title, children }) {
   const [totalQuantity, setTotalQuantity] = useState(0);
@@ -22,6 +24,20 @@ export default function Layout({ title, children }) {
         <meta name="description" content="ECommerce Website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <div className="flex flex-col justify-between min-h-screen">
         <header>
           <nav className="flex justify-between items-center h-12 px-4 shadow-lg">
